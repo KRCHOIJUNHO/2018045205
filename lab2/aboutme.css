@@ -1,0 +1,73 @@
+body{
+    font-family: sans-serif;
+    background-color: #1D2475;
+    color: #939396;
+    
+    background-image: url(img/cse326bg.jpg);
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-attachment: fixed;
+}
+
+h1{
+    font-size : 40pt;
+    color: #F7931E;
+}
+
+h2{
+    color: #F7931E;
+}
+
+ul {
+    font-size: 0.7em;
+    font-weight: bold;
+    list-style: square;
+}
+
+ol {
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+li {
+    text-align: left;
+}
+
+strong {
+    color: #FFF86B;
+}
+
+q {
+    color: #D1DFEB;
+    text-align: left;
+}
+
+a:link,
+a:visited{
+    color : #FF4F4F;
+    text-decoration: none;
+}
+
+a:hover,
+a:active{
+    text-decoration: underline;
+}
+
+h1 {
+    text-shadow: 3px -3px green;
+}
+
+p:first-letter{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.favorite {
+    border: 2px solid #F7931E;
+}
+
+table, td, th, tr {
+    border: 2px dotted black;
+    border-collapse: collapse;
+}
+

@@ -1,0 +1,63 @@
+.border {
+    border: 1px solid black;
+}
+
+.orange {
+    font-size:14pt;
+    background-color: #1D2475;
+    color : #CCCCCC;
+}
+
+.red {
+    text-align: right;
+    background-color: #1D2475;
+    color : white;
+}
+
+.green {
+    border: 10px solid white;
+    background-color: white; 
+}
+
+.blue {
+    border: 4px solid #1D2475;
+    background-color: #99CCFF;
+    padding : 5px;
+    margin-top : 10px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-left: 175px;
+}
+
+.purple {
+    border : 2px dashed blue;
+}
+
+body {
+    margin : 0px 10% 0px 10%;
+    background: url(blueTextureBG.jpg);
+}
+
+.float {
+    float: right;
+}
+
+.text {
+    text-align: justify;
+}
+
+.link {
+    padding: 10px;
+    float:left;
+    border: 5px solid blue;
+    border-radius: 10px;
+    background-color: #3366cc;
+}
+
+h1:hover,
+h2:hover,
+p:hover,
+.blue:hover
+{
+    background-color: #A6CE39;
+}
