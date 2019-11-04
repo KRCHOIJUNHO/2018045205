@@ -25,10 +25,18 @@
 			<h2>Billboard News</h2>
 		      
             <ol>
-                <?php $news_pages = $_GET["news_pages"] ?>
-                <?php for($news_pages; $news_pages > 0; $news_pages--) { ?>
-                    <li><a href="https://www.billboard.com/archive/article/2019<?= $news_pages ?>">2019-<?= $news_pages ?></a></li>
-                <?php } ?>
+                <?php   $count = $_GET["news_pages"];
+                        $news_pages = 11;
+                        for($count; $count > 0; $count--) { 
+                            if($news_pages < 10) { ?>
+                                <li><a href="https://www.billboard.com/archive/article/2019<?= "0$news_pages" ?>">2019-<?= "0$news_pages" ?></a></li>    
+                <?php       } 
+                            else { ?>
+                                <li><a href="https://www.billboard.com/archive/article/2019<?= $news_pages ?>">2019-<?= $news_pages ?></a></li>
+                <?php       } 
+                            $news_pages = $news_pages-1;
+                        } 
+                ?>
             </ol>
 		</div>
 
@@ -42,7 +50,7 @@
                     $Favorite_Artists=file("favorite.txt"); 
                 ?>
                 <?php foreach($Favorite_Artists as $Favorite_Artist){ ?>
-                    <li><a href="http://en.wikipedia.org/wiki/<?= $Favorite_Artist  ?>"><?= $Favorite_Artist ?></a></li>
+                    <li><a href="http://en.wikipedia.org/wiki/<?= $Favorite_Artist ?>"><?= $Favorite_Artist ?></a></li>
                 <?php } ?>
 			</ol>
 		</div>
@@ -53,28 +61,45 @@
 			<h2>My Music and Playlists</h2>
 
 			<ul id="musiclist">
-				<li class="mp3item">
-					<a href="lab5/musicPHP/songs/paradise-city.mp3">paradise-city.mp3</a>
-				</li>
-				
-				<li class="mp3item">
-					<a href="lab5/musicPHP/songs/basket-case.mp3">basket-case.mp3</a>
-				</li>
-
-				<li class="mp3item">
-					<a href="lab5/musicPHP/songs/all-the-small-things.mp3">all-the-small-things.mp3</a>
-				</li>
-
+                    
+                <?php 
+                    $mp3 = glob("lab5/musicPHP/songs/*.mp3");
+                    usort($mp3, function($a, $b){
+                        if(floor(filesize($a)/1024) > floor(filesize($b)/1024))
+                            return -1;
+                        else return 1;
+                    });
+                    foreach($mp3 as $filename) { ?>
+                        <li class="mp3item">
+                            <a href="<?= $filename ?>"><?= basename($filename) ?></a>
+                            (<?= floor(filesize($filename)/1024) ?> KB)
+                        </li>
+                <?php } ?>
+                
 				<!-- Exercise 8: Playlists (Files) -->
-				<li class="playlistitem">326-13f-mix.m3u:
-					<ul>
-						<li>Basket Case.mp3</li>
-						<li>All the Small Things.mp3</li>
-						<li>Just the Way You Are.mp3</li>
-						<li>Pradise City.mp3</li>
-						<li>Dreams.mp3</li>
-					</ul>
-			</ul>
+                
+                <?php
+                    $m3u_Array = glob("lab5/musicPHP/songs/*.m3u");
+                    usort($m3u_Array, function($a, $b){
+                        if(basename($a) > basename($b))
+                            return -1;
+                        else return 1;
+                    });
+                    foreach($m3u_Array as $m3u) { ?>
+                        <li class="playlistitem"><?= basename($m3u) ?>:
+                <?php       
+                            $mp3_Array = file($m3u);
+                            shuffle($mp3_Array);
+                            foreach($mp3_Array as $m3u_file) { 
+                                if(strpos($m3u_file, ".mp3") == true){ ?>
+                                    <ul>
+                                        <li><?= $m3u_file ?></li>
+                                    </ul>                   
+                <?php           } ?>
+                <?php       } ?>
+                        </li>    
+                <?php } ?>
+            </ul>
 		</div>
 
 		<div>
@@ -87,10 +112,3 @@
 		</div>
 	</body>
 </html>
-
-                    
- //                        <li><a href="https://www.billboard.com/archive/article/201911">2019-11</a></li>
-//                        <li><a href="https://www.billboard.com/archive/article/201910">2019-10</a></li>
-//                        <li><a href="https://www.billboard.com/archive/article/201909">2019-09</a></li>
-//                        <li><a href="https://www.billboard.com/archive/article/201908">2019-08</a></li>
-//                        <li><a href="https://www.billboard.com/archive/article/201907">2019-07</a></li>
